@@ -13,10 +13,10 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class SensorViewModel : ViewModel() {
-
-    private val repository = SensorRepository()
-    private val historialRepository = HistorialRepository()
+class SensorViewModel(
+    private val repository: SensorRepository = SensorRepository(),
+    private val historialRepository: HistorialRepository = HistorialRepository()
+) : ViewModel() {
 
     private var ultimoSensorValor = -1
     private var ultimoCambioTimestamp = System.currentTimeMillis()
@@ -24,6 +24,10 @@ class SensorViewModel : ViewModel() {
     // ── Estado principal — datos del sensor ──────────────────────────────
     private val _sensorData = MutableStateFlow(SensorData())
     val sensorData: StateFlow<SensorData> = _sensorData.asStateFlow()
+
+    // ── Estado de carga inicial ────────────────────────────────────────────
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     // ── Estado de conexión ────────────────────────────────────────────────
     private val _isConnected = MutableStateFlow(false)
@@ -45,6 +49,7 @@ class SensorViewModel : ViewModel() {
                 repository.observarDatos().collect { data ->
                     _sensorData.value  = data
                     _isConnected.value = true
+                    _isLoading.value = false
 
                     // ── Detectar cambio de humedad y guardar en historial ─
                     if (data.sensorHumedad != ultimoSensorValor && ultimoSensorValor != -1) {

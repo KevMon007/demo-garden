@@ -11,18 +11,18 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class HistorialRepository {
+open class HistorialRepository {
 
-    private val db = FirebaseDatabase.getInstance()
+    private val db by lazy { FirebaseDatabase.getInstance() }
 
-    fun guardarEntrada(entry: HistorialEntry) {
+    open fun guardarEntrada(entry: HistorialEntry) {
         val ref = db.getReference(FirebasePaths.HISTORIAL).child(entry.timestamp.toString())
         ref.setValue(entry)
             .addOnSuccessListener { Log.d(TAG, "Entrada guardada: ${entry.timestamp}") }
             .addOnFailureListener { e -> Log.e(TAG, "Error al guardar entrada", e) }
     }
 
-    fun observarHistorial(): Flow<List<HistorialEntry>> = callbackFlow {
+    open fun observarHistorial(): Flow<List<HistorialEntry>> = callbackFlow {
         val ref = db.getReference(FirebasePaths.HISTORIAL)
 
         val listener = object : ValueEventListener {

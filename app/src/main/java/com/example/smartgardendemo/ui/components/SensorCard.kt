@@ -9,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.smartgardendemo.R
 import com.example.smartgardendemo.core.theme.AppColors
 
 @Composable
@@ -61,9 +63,9 @@ fun SensorCard(
             // ── Título del estado ─────────────────────────────────────────
             Text(
                 text = when {
-                    !isConnected     -> "Sin conexión"
-                    sensorValor == 0 -> "Suelo Húmedo"
-                    else             -> "Suelo Seco"
+                    !isConnected     -> stringResource(R.string.sin_conexion)
+                    sensorValor == 0 -> stringResource(R.string.suelo_humedo)
+                    else             -> stringResource(R.string.suelo_seco)
                 },
                 fontSize   = 24.sp,
                 fontWeight = FontWeight.Bold,
@@ -74,7 +76,7 @@ fun SensorCard(
 
             // ── Valor crudo del sensor ────────────────────────────────────
             Text(
-                text  = "Valor del sensor: $sensorValor",
+                text  = stringResource(R.string.valor_sensor_formato, sensorValor),
                 fontSize = 14.sp,
                 color = AppColors.TextOnDark.copy(alpha = 0.8f)
             )
@@ -94,7 +96,7 @@ fun SensorCard(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text      = if (relayEstado == 1) "Relé encendido" else "Relé apagado",
+                    text      = if (relayEstado == 1) stringResource(R.string.rele_encendido_texto) else stringResource(R.string.rele_apagado_texto),
                     fontSize  = 16.sp,
                     color     = AppColors.TextOnDark,
                     fontWeight = FontWeight.Medium

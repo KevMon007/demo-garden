@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">SmartGardenDemo</string>
+
+    <!-- HomeScreen -->
+    <string name="app_title">🌱 Smart Garden</string>
+    <string name="app_subtitle">Monitoreo IoT de Humedad</string>
+    <string name="sensor_label">Sensor</string>
+    <string name="sensor_humedo">Húmedo</string>
+    <string name="sensor_seco">Seco</string>
+    <string name="rele_label">Relé</string>
+    <string name="rele_encendido">Encendido</string>
+    <string name="rele_apagado">Apagado</string>
+    <string name="modo_label">Modo</string>
+    <string name="modo_manual">Manual</string>
+    <string name="modo_auto">Auto</string>
+    <string name="btn_historial">📋 Ver Historial</string>
+
+    <!-- SensorCard -->
+    <string name="sin_conexion">Sin conexión</string>
+    <string name="suelo_humedo">Suelo Húmedo</string>
+    <string name="suelo_seco">Suelo Seco</string>
+    <string name="valor_sensor_formato">Valor del sensor: %d</string>
+    <string name="rele_encendido_texto">Relé encendido</string>
+    <string name="rele_apagado_texto">Relé apagado</string>
+
+    <!-- StatusIndicator -->
+    <string name="firebase_conectado">Firebase conectado</string>
+    <string name="sin_conexion_firebase">Sin conexión</string>
+    <string name="esp8266_activo">ESP8266 activo</string>
+    <string name="esp8266_inactivo">ESP8266 inactivo</string>
+
+    <!-- RelayControl -->
+    <string name="control_manual_rele">Control Manual del Relé</string>
+    <string name="rele_encendido_manual">Encendido manualmente</string>
+    <string name="rele_control_automatico">Controlado por sensor</string>
+    <string name="sin_conexion_control">⚠️ Sin conexión — control deshabilitado</string>
+
+    <!-- HistorialScreen -->
+    <string name="historial_titulo">📋 Historial de Lecturas</string>
+    <string name="btn_regresar">← Regresar</string>
+    <string name="sin_registros">Sin registros aún</string>
+    <string name="mostrando_ultimos">Mostrando últimos 50 registros</string>
 </resources>

@@ -8,9 +8,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.smartgardendemo.R
 import com.example.smartgardendemo.core.theme.AppColors
 
 @Composable
@@ -54,14 +56,14 @@ fun RelayControl(
             // ── Info del control ──────────────────────────────────────────
             Column {
                 Text(
-                    text       = "Control Manual del Relé",
+                    text       = stringResource(R.string.control_manual_rele),
                     fontSize   = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color      = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text     = if (localChecked) "Encendido manualmente" else "Controlado por sensor",
+                    text     = if (localChecked) stringResource(R.string.rele_encendido_manual) else stringResource(R.string.rele_control_automatico),
                     fontSize = 13.sp,
                     color    = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
@@ -88,7 +90,7 @@ fun RelayControl(
         // ── Advertencia si no hay conexión ────────────────────────────────
         if (!isConnected) {
             Text(
-                text     = "⚠️ Sin conexión — control deshabilitado",
+                text     = stringResource(R.string.sin_conexion_control),
                 fontSize = 12.sp,
                 color    = AppColors.Red,
                 modifier = Modifier.padding(start = 20.dp, bottom = 12.dp)
