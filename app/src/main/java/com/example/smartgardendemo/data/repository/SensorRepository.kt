@@ -10,13 +10,13 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class SensorRepository {
+open class SensorRepository {
 
-    private val db = FirebaseDatabase.getInstance()
+    private val db by lazy { FirebaseDatabase.getInstance() }
 
     // ── LECTURA en tiempo real ────────────────────────────────────────────
     // Retorna un Flow que emite cada vez que Firebase actualiza /humedad/datos
-    fun observarDatos(): Flow<SensorData> = callbackFlow {
+    open fun observarDatos(): Flow<SensorData> = callbackFlow {
 
         val ref = db.getReference(FirebasePaths.DATOS)
 
@@ -48,7 +48,7 @@ class SensorRepository {
     }
 
     // ── ESCRITURA — control manual del relé desde la app ─────────────────
-    fun setRelayManual(valor: Int, onResult: (Boolean) -> Unit) {
+    open fun setRelayManual(valor: Int, onResult: (Boolean) -> Unit) {
         db.getReference(FirebasePaths.RELAY_MANUAL)
             .setValue(valor)
             .addOnSuccessListener { onResult(true)  }

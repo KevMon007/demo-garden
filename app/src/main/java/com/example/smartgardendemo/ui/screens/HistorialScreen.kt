@@ -19,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.smartgardendemo.R
 import com.example.smartgardendemo.ui.components.HistorialItem
 import com.example.smartgardendemo.viewmodel.HistorialViewModel
 
@@ -39,11 +41,11 @@ fun HistorialScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("📋 Historial de Lecturas") },
+                title = { Text(stringResource(R.string.historial_titulo)) },
                 navigationIcon = {
                     TextButton(onClick = onBack) {
                         Text(
-                            text = "← Regresar",
+                            text = stringResource(R.string.btn_regresar),
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -67,7 +69,7 @@ fun HistorialScreen(
                 }
                 historial.isEmpty() -> {
                     Text(
-                        text = "Sin registros aún",
+                        text = stringResource(R.string.sin_registros),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                     )
@@ -81,7 +83,7 @@ fun HistorialScreen(
                         }
                         item {
                             Text(
-                                text = "Mostrando últimos 50 registros",
+                                text = stringResource(R.string.mostrando_ultimos),
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .padding(16.dp),

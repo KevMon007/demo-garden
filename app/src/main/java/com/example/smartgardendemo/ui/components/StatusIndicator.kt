@@ -10,10 +10,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.smartgardendemo.R
 import com.example.smartgardendemo.core.theme.AppColors
 
 @Composable
@@ -66,7 +68,7 @@ fun StatusIndicator(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text       = if (isConnected) "Firebase conectado" else "Sin conexión",
+                    text       = if (isConnected) stringResource(R.string.firebase_conectado) else stringResource(R.string.sin_conexion_firebase),
                     fontSize   = 14.sp,
                     fontWeight = FontWeight.Medium,
                     color      = if (isConnected) AppColors.Humid else AppColors.Red
@@ -82,7 +84,7 @@ fun StatusIndicator(
                     AppColors.Red.copy(alpha = 0.2f)
             ) {
                 Text(
-                    text     = if (isConnected) "ESP8266 activo" else "ESP8266 inactivo",
+                    text     = if (isConnected) stringResource(R.string.esp8266_activo) else stringResource(R.string.esp8266_inactivo),
                     fontSize = 12.sp,
                     color    = if (isConnected) AppColors.Humid else AppColors.Red,
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)

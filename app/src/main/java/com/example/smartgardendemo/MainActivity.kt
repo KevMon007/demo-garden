@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 import com.example.smartgardendemo.core.theme.AppTheme
 import com.example.smartgardendemo.ui.screens.HistorialScreen
 import com.example.smartgardendemo.ui.screens.HomeScreen
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
         // ── Inicializar Firebase ──────────────────────────────────────────
         FirebaseApp.initializeApp(this)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         // ── Habilitar diseño de borde a borde ─────────────────────────────
         enableEdgeToEdge()

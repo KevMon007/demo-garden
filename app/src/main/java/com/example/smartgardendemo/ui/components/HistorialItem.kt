@@ -16,9 +16,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.smartgardendemo.R
 import com.example.smartgardendemo.core.theme.AppColors
 import com.example.smartgardendemo.data.model.HistorialEntry
 
@@ -30,7 +32,6 @@ fun HistorialItem(
     val esHumedo = entry.sensorHumedad == 0
     val icono = if (esHumedo) "💧" else "🌵"
     val bgColor = if (esHumedo) AppColors.Humid.copy(alpha = 0.1f) else AppColors.Dry.copy(alpha = 0.1f)
-    val estadoTexto = if (esHumedo) "Húmedo" else "Seco"
 
     Card(
         modifier = modifier
@@ -58,7 +59,7 @@ fun HistorialItem(
                     Text(text = icono, fontSize = 18.sp)
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = estadoTexto,
+                        text = if (esHumedo) stringResource(R.string.sensor_humedo) else stringResource(R.string.sensor_seco),
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -74,7 +75,7 @@ fun HistorialItem(
                 }
             }
             Text(
-                text = if (entry.relayEstado == 1) "Relé encendido 🔵" else "Relé apagado ⚪",
+                text = if (entry.relayEstado == 1) "${stringResource(R.string.rele_encendido_texto)} 🔵" else "${stringResource(R.string.rele_apagado_texto)} ⚪",
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
@@ -82,7 +83,7 @@ fun HistorialItem(
     }
 }
 
-private fun formatDuracion(segundos: Long): String {
+internal fun formatDuracion(segundos: Long): String {
     return if (segundos < 60) {
         "Duración anterior: ${segundos}s"
     } else {
